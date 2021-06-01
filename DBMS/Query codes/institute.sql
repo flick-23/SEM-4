@@ -11,19 +11,22 @@ GENDER CHAR,
 ADDRESS VARCHAR(40),
 CITY VARCHAR(15),
 SALARY INT,
+DNO INT,
 DESIGNATION VARCHAR(10), 
 PRIMARY KEY(FID)
 );
 
-insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation) values(6969,"Harvey","Specter","2001-06-01","2020-01-01","M","51 Story ScraperBay Adelaide West","Toronto",90000,"HOD");
-insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation) values(1248,"Scotty","Jones","2002-01-29","2020-02-05","F","23 Story ScraperBay Adelaide East","Toronto",60000,"Teacher");
-insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation) values(1000,"Tony","Stark","1995-01-01","2010-01-01","M","100818 Malibu Point ","Toronto",100000,"HOD");
-insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation) values(1100,"Steve","Rogers","1980-01-01","2005-01-01","M","100818 Malibu Point ","Toronto",100000,"Teacher");
-insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation) values(1111,"Thor","Odinson","1975-06-14","1999-04-01","M","Asguard Tower","Toronto",100000,"Teacher");
-insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation) values(1230,"Naruto","Uzumaki","2000-08-12","2020-10-12","M","Eichiraku Ramen Street","Konoha",75000,"Teacher");
-insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation) values(1690,"Kakashi","Hatake","1990-10-06","2000-10-12","M","Icha Icha Paradise","Konoha",105000,"HOD");
-insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation) values(9999,"Sasuke","Uchiha","2000-02-06","2020-12-12","M","Uchicha Hideout","Konoha",74999,"Teacher");
-insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation) values(8888,"Itachi","Uchiha","1994-06-29","2008-10-11","M","Uchicha Hideout","Konoha",105100,"HOD");
+
+insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation,dno) values(6969,"Harvey","Specter","2001-06-01","2020-01-01","M","51 Story ScraperBay Adelaide West","Toronto",90000,"HOD",1);
+insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation,dno) values(1248,"Scotty","Jones","2002-01-29","2020-02-05","F","23 Story ScraperBay Adelaide East","Toronto",60000,"Teacher",1);
+insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation,dno) values(1000,"Tony","Stark","1995-01-01","2010-01-01","M","100818 Malibu Point ","Toronto",100000,"HOD",2);
+insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation,dno) values(1100,"Steve","Rogers","1980-01-01","2005-01-01","M","100818 Malibu Point ","Toronto",100000,"Teacher",3);
+insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation,dno) values(1111,"Thor","Odinson","1975-06-14","1999-04-01","M","Asguard Tower","Toronto",100000,"Teacher",3);
+insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation,dno) values(1230,"Naruto","Uzumaki","2000-08-12","2020-10-12","M","Eichiraku Ramen Street","Konoha",75000,"Teacher",1);
+insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation,dno) values(1690,"Kakashi","Hatake","1990-10-06","2000-10-12","M","Icha Icha Paradise","Konoha",105000,"HOD",3);
+insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation,dno) values(9999,"Sasuke","Uchiha","2000-02-06","2020-12-12","M","Uchicha Hideout","Konoha",74999,"Teacher",4);
+insert into FACULTY(fid,fname,lname,dob,doj,gender,address,city,salary,designation,dno) values(8888,"Itachi","Uchiha","1994-06-29","2008-10-11","M","Uchicha Hideout","Konoha",105100,"HOD",4);
+
 CREATE TABLE DEPARTMENT(
 Dno int,
 Dname varchar(20),
@@ -38,9 +41,9 @@ insert into department values(2,"Tech","Avengers Tower",1000);
 insert into department values(3,"Philosophy"," Forest of Death",1690);
 insert into department values(4,"GenJutsu","Hiddent Mist ",8888);
 
-ALTER TABLE FACULTY ADD COLUMN DNO INT;
-
 ALTER TABLE FACULTY ADD CONSTRAINT FOREIGN KEY(DNO) REFERENCES DEPARTMENT(Dno);
+
+
 
 CREATE TABLE STUDENT(
 USN CHAR(10),
@@ -61,6 +64,20 @@ insert into student values("2GI19CS069","Aryan","Kulkarni","M","Street 169, Reyn
 insert into student values("2GI19CS169","Aman","Nadaf","M","C-69069, Sage Apartments","Toronto",3,6969696969,2);
 insert into student values("2GI19CS269","Konahamaru","Sarutobi","M","Wall Street","Konoha",3,1969096960,3);
 
+
+CREATE TABLE SUBJECTS(
+SUB_CODE varchar(10),
+SUB_NAME VARCHAR(15),
+TYPE CHAR,
+CREDIT INT,
+PRIMARY KEY (SUB_CODE) 
+);
+
+insert into subjects values("01","Law",1,5);
+insert into subjects values("02","Tech",2,5);
+insert into subjects values("03","Philosophy",3,5);
+insert into subjects values("04","GenJutsu",4,5);
+
 CREATE TABLE ENGAGES(
 FID INT,
 SUB_CODE VARCHAR(10),
@@ -76,18 +93,7 @@ insert into engages values(1248,"01",5);
 insert into engages values(9999,"04",5);
 
 
-CREATE TABLE SUBJECTS(
-SUB_CODE varchar(10),
-SUB_NAME VARCHAR(15),
-TYPE CHAR,
-CREDIT INT,
-PRIMARY KEY (SUB_CODE) 
-);
 
-insert into subjects values("01","Law",1,5);
-insert into subjects values("02","Tech",2,5);
-insert into subjects values("03","Philosophy",3,5);
-insert into subjects values("04","GenJutsu",4,5);
 
 CREATE TABLE TEST(
 TEST_NO INT,
